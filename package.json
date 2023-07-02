@@ -1,0 +1,46 @@
+{
+  "name": "nodejs_ssr-react_website",
+  "version": "1.0.0",
+  "description": "Basic NodeJS webserver with SSR React + typescript support and esbuild bundling.",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "start:inspect": "node --inspect main.js",
+    "start:dev": "npx nodemon main.js",
+    "build:dev": "node build/esbuild.js",
+    "build:dev:watch": "node build/esbuild.js --watch",
+    "build:prod": "node build/esbuild.js --prod",
+    "build:prod:watch": "node build/esbuild.js --prod --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodejs",
+    "react",
+    "typescript",
+    "esbuild",
+    "ssr react",
+    "basic webserver",
+    "express"
+  ],
+  "author": "Daniel Shuster",
+  "license": "ISC",
+  "dependencies": {
+    "esbuild": "^0.17.19",
+    "esbuild-plugin-sass": "^1.0.1",
+    "express": "^4.18.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.2.5",
+    "connect-livereload": "^0.6.1",
+    "esbuild-plugin-handlebars": "^1.0.2",
+    "nodemon": "^2.0.22",
+    "npx": "^10.2.2",
+    "sass": "^1.63.3",
+    "supervisor": "^0.12.0",
+    "ts-node": "^10.9.1",
+    "url": "^0.11.1"
+  }
+}
