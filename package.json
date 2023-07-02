@@ -33,7 +33,7 @@
     "typescript": "^5.0.4"
   },
   "devDependencies": {
-    "@types/node": "^20.2.5",
+    "@types/node": "^20.3.3",
     "connect-livereload": "^0.6.1",
     "esbuild-plugin-handlebars": "^1.0.2",
     "nodemon": "^2.0.22",

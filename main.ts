@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
     );
 });
 
-app.use(express.static('public'));
+app.use(express.static('assets'));
 
 app.listen(3000, () => {
     console.log('listening on port 3000');
