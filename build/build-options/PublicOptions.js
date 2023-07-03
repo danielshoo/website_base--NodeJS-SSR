@@ -2,6 +2,7 @@ const path = require("node:path");
 const process = require("node:process");
 const frontendSassBuilder = require("../plugins/sass/frontend-sass-builder");
 const fs = require("node:fs");
+const projectDir = path.resolve(__dirname, '..', '..');
 
 const isProductionMode = process.argv.includes('--prod');
 const frontendDir = path.resolve(__dirname, '..', '..', 'frontend');
@@ -36,6 +37,8 @@ module.exports = {
     entryPoints: frontendEntries,
     assetNames: '[dir]/[name].js',
     sourcemap: !isProductionMode,
+    nodePaths: [projectDir],
+    absWorkingDir: projectDir,
     tsconfig: path.resolve(__dirname, '..', '..', 'tsconfig.json'),
     minify: isProductionMode,
     plugins: [frontendSassBuilder()],

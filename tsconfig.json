@@ -6,6 +6,11 @@
     "rootDir": ".",
     "baseUrl": "./frontend",
     "jsx": "react",
+    "paths": {
+      "/*": [
+        "./*"
+      ]
+    }
   },
   "exclude": ["node_modules"],
 }
