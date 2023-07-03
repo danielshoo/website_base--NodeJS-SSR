@@ -2,6 +2,8 @@
 node_modules/
 main.js
 main.js.map
-public/**/*.js
-public/**/*.js.map
-public/**/*.css
+assets/**/*
+!assets/css/**/*
+!assets/js/**/*
+!assets/img/**/*
+!assets/fonts/**/*

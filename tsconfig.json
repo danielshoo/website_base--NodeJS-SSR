@@ -4,7 +4,7 @@
     "module": "commonjs",
     "moduleResolution": "Node16",
     "rootDir": ".",
-    "baseUrl": "./public",
+    "baseUrl": "./frontend",
     "jsx": "react",
   },
   "exclude": ["node_modules"],

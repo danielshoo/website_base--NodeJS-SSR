@@ -4,10 +4,10 @@ const url = require("url");
 
 const dirProjectRoot = path.resolve(__dirname, '..', '..', '..');
 const dirSrc = path.resolve(dirProjectRoot, 'src');
-const dirPublic = path.resolve(dirProjectRoot, 'public');
+const dirFrontend = path.resolve(dirProjectRoot, 'frontend');
 
 /**
- * Enables the frontend (public / static) codebase to resolve SCSS from the src (backend) codebase. By crossing
+ * Enables the frontend codebase to resolve SCSS from the src (backend) codebase. By crossing
  * that gap, we can treat the frontend & backend codebases as on homogeneous structure. Towards that end, this plugin
  * generates an output file for each entrypoint that requires SCSS. It also resolves the required module with
  * the CSS string.
@@ -24,7 +24,7 @@ module.exports = () => {
                     paths: [args.resolveDir],
                 });
 
-                const scssCompiled = sass.compile(scssFullPath, {loadPaths: [dirProjectRoot, dirSrc, dirPublic]});
+                const scssCompiled = sass.compile(scssFullPath, {loadPaths: [dirProjectRoot, dirSrc, dirFrontend]});
                 const watchFiles = scssCompiled.loadedUrls.filter((urlObj) => urlObj.protocol === 'file:').map(url.fileURLToPath);
 
                 return {

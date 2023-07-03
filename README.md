@@ -4,19 +4,25 @@
 This projects serves as a functional base for website development. As the project name suggests, it is ready out-of-the-box 
 with server side rendering React support, TypeScript, and asset bundling.
 
-## Getting Started
-There are two domains to the codebase: public and src (frontend and backend respectively). Both have unique attributes to how they 
-are bundled. Please read the following sections to understand how to develop for and use each domain. 
+### Getting Started
+To get the server up & running, run the below commands in order, then navigate to http://localhost:3000 in your browser.
+```
+npm ci
+npm run build:dev
+npm run start
+```
 
-### SRC (Backend)
-The src code has one entry point as far as the bundler is concerned: main.js.
-This includes the basic express server running on port 3000. Static/asset-files are set up to serve from the public directory.
+### Making Changes
 
-### PUBLIC (Frontend)
-The public domain of the server is the location to add any needed font, scss, js, etc files. This directory 
-also supports TypeScript files as entrypoints. For any given entrypoint, the esbuild will generate a corresponding js file
-in the same directory as well as a css file comprised of any compiled scss dependencies. For example, public/react-page/Main.ts would result in a
-public/react-page/Main.js and public/react-page/Main.css, accessible at the relative path /react-page/Main.js and /react-page/Main.css respectively.
+You can make changes by adding/editing files within the src/ and frontend/ directories or by editing the server code in Main.ts. 
+
+### src/
+The src/ code can be thought of as a library directory oriented for backend/server-side operations with any added modules available to the frontend build (starting from the project root 'src/dir1/file.tsx'). 
+This means that with proper separation of backend logic into container components, SSR React is supported by including any src/ component also in a corresponding frontend asset bundle. 
+
+### frontend/
+The fronted directory is the location to add any assets that would need to be compiled. That is files types such as scss, js, or ts files. From this directory, those 
+files will be compiled, minimized, and output into the assets directory with a matching subdirectory structure. 
 
 ### Cache Busting
 There is no cache busting in this iteration, but is on the roadmap.

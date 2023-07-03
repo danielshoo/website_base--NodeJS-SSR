@@ -1,11 +1,10 @@
 const path = require("node:path");
 const process = require("node:process");
-const publicSassBuilder = require("../plugins/sass/public-sass-builder");
+const frontendSassBuilder = require("../plugins/sass/frontend-sass-builder");
 const fs = require("node:fs");
 
 const isProductionMode = process.argv.includes('--prod');
-const assetsDir = path.resolve(__dirname, '..', '..', 'assets');
-const publicDir = path.resolve(__dirname, '..', '..', 'public');
+const frontendDir = path.resolve(__dirname, '..', '..', 'frontend');
 
 const recursiveFindEntries = function (rootDir) {
 
@@ -15,9 +14,10 @@ const recursiveFindEntries = function (rootDir) {
         fs.readdirSync(dir).forEach(dirItem => {
             const dirItemPath = path.resolve(dir, dirItem);
             const dirItemPathStat = fs.statSync(dirItemPath);
+            const dirItemPathParts = path.parse(dirItemPath);
             if (dirItemPathStat.isFile() && ['.scss', '.ts', '.tsx'].includes(path.parse(dirItemPath).ext)) {
                 entries.push(dirItemPath);
-            } else if (dirItemPathStat.isDirectory() && dirItemPathStat.name !== 'lib') {
+            } else if (dirItemPathStat.isDirectory() && dirItemPathParts.name !== 'lib') {
                 _recursiveFindEntries(dirItemPath);
             }
         });
@@ -28,18 +28,18 @@ const recursiveFindEntries = function (rootDir) {
     return entries;
 }
 
-const publicEntries = recursiveFindEntries(publicDir);
+const frontendEntries = recursiveFindEntries(frontendDir);
 
 module.exports = {
     target: 'es2020',
     platform: 'browser',
-    entryPoints: publicEntries,
+    entryPoints: frontendEntries,
     assetNames: '[dir]/[name].js',
     sourcemap: !isProductionMode,
     tsconfig: path.resolve(__dirname, '..', '..', 'tsconfig.json'),
     minify: isProductionMode,
-    plugins: [publicSassBuilder()],
-    outbase: 'public',
+    plugins: [frontendSassBuilder()],
+    outbase: 'frontend',
     bundle: true,
     outdir: 'assets',
 };
